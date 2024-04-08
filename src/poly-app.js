@@ -13,12 +13,17 @@ static get template(){
     return html` 
     <style>
          .header{
+            position: fixed;
+            width:100%;
             display: flex;
             height: 100px;
             align-items:center;
             background-color: #134a88;
            
          }    
+         .header.slide-up {
+            top: -100px; /* Adjust as needed based on the height of your header */
+         }
          .logo{
             height: 55px;
             margin-left: 100px;
@@ -225,61 +230,61 @@ static get template(){
          
         }
         .login__panel.show{
-         display: block; 
+            display: block; 
         }
         .login-content-container{
-         top: 20px;
-         left: o;
-         color: white;
-         display: flex;
-         flex-direction:column;
-         align-items:center;
-         justify-content: center; /* Center content vertically */
-         height: 100%; /* Take full height of the login panel */
+            top: 20px;
+            left: o;
+            color: white;
+           display: flex;
+           flex-direction:column;
+           align-items:center;
+           justify-content: center; /* Center content vertically */
+           height: 100%; /* Take full height of the login panel */
          
          
         }
         .closebtn{
-         position: absolute;
-         top: 10px;
-         right: 10px;
-         background-color: #134a88;
-         color: white;
-         padding: 12px;
-         font-size: 16px;
-         border: none;
-         border-radius: 12px;
-         cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #134a88;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
             
         }
 
         .carousel-container {
-        height: 730px; /* Set container height to 100% */
-        position: relative;
-        overflow: hidden;
-        width:100%;
-        background-color: white;
+            height: 730px; /* Set container height to 100% */
+            position: relative;
+            overflow: hidden;
+            width:100%;
+            background-color: white;
         }
 
         .carousel {
-         display: flex;
-         transition: transform 0.5s ease-in-out;
-         height: auto; /* Set carousel height to 100% */
-         width: 100%;
-         object-fit:cover;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: auto; /* Set carousel height to 100% */
+            width: 100%;
+            object-fit:cover;
         }
 
         .carousel-item {
-         width: 100%;
-         flex: 0 0 auto;
-         height: 100%; /* Set item height to 100% */
+            width: 100%;
+            flex: 0 0 auto;
+            height: 100%; /* Set item height to 100% */
          
         }
 
          /* Carousel animation */
         @keyframes slide {
-         0% { transform: translateX(0); }
-         100% { transform: translateX(-33.33%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
         }
 
         /* Buttons */
@@ -304,81 +309,162 @@ static get template(){
             opacity: 0.5;
         }
         .card-container{
-         padding: 150px; 
-         background-color: white;  
+            padding: 150px; 
+            background-color: white;  
         }
 
         .main-container{
-         display: flex;
-         justify-content: space-evenly;
-         padding-top: 20px;
-         background-color:whitesmoke;
-         margin-left:30px;
-         margin-right:30px;
-         margin-top:30px;
-         margin-bottom:30px;
+            display: flex;
+            justify-content: space-evenly;
+            padding-top: 20px;
+            background-color:whitesmoke;
+            margin-left:30px;
+            margin-right:30px;
+            margin-top:30px;
+            margin-bottom:30px;
         }
         .content-container{
-         display: block;
-         max-height: 300px;
-         max-width: 300px;
-         background-color:whitesmoke;
+            color:#595959;
+            display: block;
+            max-height: 300px;
+            max-width: 300px;
+            background-color:whitesmoke;
         
         }
         .content{
-         display: block;
+            display: block;
         }
         .content img{
-         height: 50px; 
-         width: 50px;
+            height: 50px; 
+            width: 50px;
         }
         .community-container{
-         display: flex;
-         position: relative;
-         height:400px;
-         opacity:100% ;
-         justify-content:center;
-         align-items: center;
-         background-color:#134a88;
+            display: flex;
+            position: relative;
+            height:400px;
+            opacity:100% ;
+            justify-content:center;
+            align-items: center;
+            background-color:#134a88;
          
         }
         .community-container img{
-         opacity: 20%;
-         height:400px;
-         width:100%
+            opacity: 20%;
+            height:400px;
+            width:100%
          
         }
         .community-content{
-         position: absolute;
-         padding-top:30px;
-         
-         color: white;
-         display: block;
-         justify-content: center;
-         text-align:center;
-         margin-left:100px;
-         margin-right:100px;
+            position: absolute;
+            padding-top:30px;
+            
+            color: white;
+            display: block;
+            justify-content: center;
+            text-align:center;
+            margin-left:100px;
+            margin-right:100px;
         }
-        .card-container3 {
-         display: flex;
-         justify-content: space-evenly ;
-         background-color: white;
-         padding: 20px; /* Add padding for spacing from the edges */
+        .container3{
+            height:200px;
+            display: flex;
+            padding: 30px;
+            padding-left:20px;
+            padding-right:20px;
+            justify-content:center;
+            align-items:center;
+            background-color:whitesmoke;
+            margin-top:30px;
+            margin-bottom:30px;
+
+        }
+        .container-sub{
+         
+           color:#134a88;
+         
+
+        }
+        .content-sub{
+            margin-left:30px;
+            margin-right:30px;
+            margin-top:30px;
+            margin-bottom:30px;
+        }
+        .container-body{
+            width:40%;
         }
 
-      .card-view2 {
-         color:black;
-         margin-left: 10px;
-         margin-right:10px;
-         height:200px;
-         width: 300px;
-         border: 1px solid;
-         border-color:grey;
-         background-color: #f9f9f9; /* Optional: Add a light gray background to each card */
-         padding: 30px; /* Add padding inside each card */
-         
+        .content-body{
+            color:#595959;
+            text-align:justify;
+            margin-left:30px;
+            margin-right:30px;
+            margin-top:30px;
+            margin-bottom:30px;
         }
-            
+        .container-button{
+         
+         
+       
+        }
+        .content-button{
+         
+            margin-left:30px;
+            margin-right:30px;
+            margin-top:30px;
+            margin-bottom:30px;
+        }
+        .signupbtn{
+            height:50px;
+            width:120px;
+            background-color: #134a88;
+            color: white;
+        }
+
+        .card-container1{
+            display: flex;
+            justify-content:center;
+            align-items:center;
+            background-color: white;
+            padding: 20px; /* Add padding for spacing from the edges */
+        }
+
+        .card-view {
+            color:#595959;
+            margin-left: 10px;
+            margin-right:10px;
+            height:200px;
+            width: 300px;
+            border: 1px solid;
+            border-color:grey;
+            background-color: white; /* Optional: Add a light gray background to each card */
+            padding: 20px; /* Add padding inside each card */
+         
+         }
+         .footer{
+            display: flex;
+            height:auto;
+            align-items:center;
+            background-color: #134a88;
+         }
+         .right-footer{
+            display: flex;
+            margin-left:500px;
+         }
+         .menu{
+            color: white;
+            margin-right:0%;
+            padding: 20px;
+            display: flex;
+            flex-direction:column;  
+         }
+         .menu-content a{
+            color: white;
+            display: flex;
+            flex-direction:column; 
+         }
+         
+          
 
 
         </style>
@@ -542,27 +628,85 @@ static get template(){
                         <div>
                            <h2>Here for your Banking Needs</h2>
                            <h1>We are strong, stable, secure, and committed to the communities we serve.</h1>
-                           <button><a href="/community" >Our Community</button>
+                           <button style=" height: 40px; width: 180px; border:1px solid; border-color:white; color: white; background-color: transparent;">OUR COMMUNITY</button>
                         </div>
                   </div>
             </div>
-     
-            <div class="card-container3">
-                <div class="card-view2">
-                    <p>go fnbp</p>
-                    <b>We have a new app with new feature. This app was built with convenience in mind.</b>
+
+
+            <div class="container3">
+               <div class="container-sub">
+                        <div class="content-sub">
+                              <h2>Subscribe</h2>
+                        </div>
+               </div>
+               <div class="container-body">
+                      <div class="content-body">
+                         <div>To help stay informed, just provide a few quick details about yourself and First National Bank at Paris will handle the rest.</div>
+                      </div>
+               </div>
+               <div class="container-button">
+                       <div class="content-button">
+                         <button class="signupbtn">Sign Up</button>
+                       </div>
+               </div>
+            </div> 
+
+            <div class="card-container1">
+                <div class="card-view">
+                    <h2>Go fnbp</h2>
+                    <p>We have a new app with new feature. This app was built with convenience in mind.</p>
                 </div>
 
                 <div class="card-view">
-                    <p>Local Loan Decisions </p>
+                    <h2>Local Loan Decisions </h2>
                     <p>At First National Bank and Community National Bank we know our customers and we know how to serve their financial needs. </p>
                 </div>
-
-                <div class="card-view">
-                    <p>go fnbp</p>
-                    <p>We have a new app with new feature. This app was built with convenience in mind. </p>
+                
+                    <div class="card-view">
+                    <h2>Let's GET SOCIAL </h2>
+                    <p>Have you like our page on Facebook? We keep it updated with all new happenings at the bank.  </p>
                 </div>
             </div>
+
+            <div class="footer">
+              <img src="images/polyimg/first-national-bank-paris-logo-white.png" alt="Polybank logo" class= "logo">
+
+                     <div class="right-footer">
+                                  <div class="menu">
+                                    <h2>Company</h2>
+                                       <div class="menu-content">
+                                       <a href="#">History</a>
+                                       <a href="#">Community</a>
+                                       </div>
+                                    </div> 
+                                  <div class="menu">
+                                    <h2>Help</h2>
+                                       <div class="menu-content">
+                                       <a href="#">Find a Location</a>
+                                       <a href="#">Contact Us</a>
+                                       <a href="#">Financial Calculators</a>
+                                       </div>
+                                    </div> 
+                                  <div class="menu">
+                                    <h2>Legal</h2>
+                                       <div class="menu-content">
+                                       <a href="#">Privacy Policy</a>
+                                       <a href="#">Terms of Use</a>
+                                       </div>
+                                    </div> 
+                      </div>
+            </div>
+
+
+
+
+
+
+            
+     
+          
+                    
          
 
             
@@ -602,6 +746,34 @@ startCarousel() {
 
    setInterval(nextSlide, 3000); // Change slide every 3 seconds
 }
+
+constructor() {
+        super();
+        this.prevScrollPos = window.pageYOffset;
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll() {
+        const currentScrollPos = window.pageYOffset;
+        const header = this.shadowRoot.querySelector('.header');
+
+        if (this.prevScrollPos > currentScrollPos) {
+            header.classList.remove('slide-up');
+        } else {
+            header.classList.add('slide-up');
+        }
+
+        this.prevScrollPos = currentScrollPos;
+    }
 
 }
 
