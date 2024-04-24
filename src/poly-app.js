@@ -30,6 +30,10 @@ static get template(){
             <home-page name= "home-page"></home-page>
             <register-page name="register-page"></register-page>  
             <user-home-page name="user-home-page"></user-home-page>
+            <checking-page name="checking-page"></checking-page>
+            <newaccount-page name="newaccount-page"></newaccount-page>
+            <my-view1 name="my-view1"></my-view1>
+            <testing-t name="testing-t"></testing-t>
           </iron-pages>
 
       <!-- <div class="carousel-container">
@@ -216,7 +220,7 @@ static get properties() {
   _routePageChanged(page) {
     if (!page) {
       this.page = 'home-page';
-    } else if (['home-page', 'register-page', 'user-home-page'].indexOf(page) !== -1) {
+    } else if (['home-page', 'register-page', 'user-home-page', 'checking-page', 'newaccount-page','my-view1','testing-t'].indexOf(page) !== -1) {
       this.page = page;
     } else {
       this.page = 'view404';
@@ -234,6 +238,15 @@ static get properties() {
         break;
       case 'user-home-page':
         import('./user-home-page.js');
+        break;
+      case 'checking-page':
+        import('./checking-page.js');
+        break;
+      case 'newaccount-page':
+        import('./newaccount-page.js');
+        break;
+      case 'testing-t':
+        import('./testing.js');
         break;
       case 'view404':
         import('./my-view404.js');
