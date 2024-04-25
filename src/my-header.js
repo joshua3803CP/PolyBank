@@ -76,113 +76,12 @@ class Header extends PolymerElement{
             font-size: 14px;
 
         }
-
-
-         .dropdown2{
-            margin-right: 10px;
-         }
-         .dropbtn2 {
-            background-color: #134a88;
-            color: white;
-            padding: 12px;
-            font-size: 16px;
-            border: none;
-            border-radius: 12px;
-            width: 100px;
-            cursor: pointer;
-        }
-         
-         .dropdown-content2{
-            display: none;
-            position: absolute;
-            background-color: #134a88;
-            border-radius: 12px;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-         }
-         .dropdown2:hover .dropdown-content2{
-            display: block;
-         }
-         .dropdown-content2 a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-        }
-        
-
-         .dropdown3{
-            margin-right: 10px;
-         }
-         .dropbtn3 {
-            background-color: #134a88;
-            color: white;
-            padding: 12px;
-            font-size: 16px;
-            border: none;
-            border-radius: 12px;
-            width: 100px;
-            cursor: pointer;
-        }
-         .dropdown-content3{
-            display: none;
-            position: absolute;
-            background-color: #134a88;
-            border-radius: 12px;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-         }
-         .dropdown3:hover .dropdown-content3{
-            display: block;
-         }
-      
-         .dropdown-content3 a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-
+        .dropdown-content a:hover{
+           background-color:  #1f3e69          ;
         }
 
 
-         .dropdown4{
-            margin-right: 10px;
-         }
-         .dropbtn4 {
-            background-color: #134a88;
-            color: white;
-            padding: 12px;
-            font-size: 16px;
-            border: none;
-            border-radius: 12px;
-            width: 100px;
-            cursor: pointer;
-        }
-         .dropdown-content4{
-            display: none;
-            position: absolute;
-            background-color: #134a88;
-            border-radius: 12px;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-         }
-         .dropdown4:hover .dropdown-content4{
-            display: block;
-            
-         }
-         .dropdown-content4 a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration:none;
-            display: block;
-            font-size: 14px;
-            
-        }
+
 
         .btncontainer{
          display:flex;
@@ -245,14 +144,13 @@ class Header extends PolymerElement{
         }
         .closebtn{
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: white;
+            top: 20px;
+            right: 20px;
+            background-color: #1f3e69;
             color: white;
-            padding: 12px;
-            font-size: 16px;
+            font-size: 14px;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             
         }
@@ -287,27 +185,27 @@ class Header extends PolymerElement{
                                        <a href="#">Personal Debit Cards</a>
                                        </div>
                                     </div>   
-                                    <div class="dropdown2">
-                                    <button class="dropbtn2">Buisness</button>
-                                       <div class="dropdown-content2">
+                                    <div class="dropdown">
+                                    <button class="dropbtn">Buisness</button>
+                                       <div class="dropdown-content">
                                        <a href="#">Checking</a>
                                        <a href="#">Savings and Investments</a>
                                        <a href="#">Digital Banking</a>
                                        <a href="#">Buisness ATM's and Debit Cards</a>
                                        </div>
                                     </div>    
-                                    <div class="dropdown3">
-                                    <button class="dropbtn3">Lending</button>
-                                       <div class="dropdown-content3">
+                                    <div class="dropdown">
+                                    <button class="dropbtn">Lending</button>
+                                       <div class="dropdown-content">
                                        <a href="#">Personal</a>
                                        <a href="#">Mortage</a>
                                        <a href="#">Buisness</a>
                                        <a href="#">Agriculture</a>
                                        </div>
                                     </div>    
-                                    <div class="dropdown4">
-                                       <button class="dropbtn4">Resourses</button>
-                                          <div class="dropdown-content4">
+                                    <div class="dropdown">
+                                       <button class="dropbtn">Resourses</button>
+                                          <div class="dropdown-content">
                                           <a href="#">Bank News and Highlights</a>
                                           <a href="#">Contact Us</a>
                                           <a href="#">Order Checks</a>
@@ -331,7 +229,7 @@ class Header extends PolymerElement{
       </div>
 
       <div class="login__panel" id="loginPanel"> 
-           <button class="closebtn" on-click="closeLoginPanel">close</button>
+           <button class="closebtn" on-click="closeLoginPanel">X</button>
         <div class="login-content-container">
                   <h3>Welcome Back !</h3>
                   <h3>Login to you Account.</h3>

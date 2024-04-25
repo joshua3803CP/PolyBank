@@ -6,13 +6,15 @@ class Footer extends PolymerElement{
             <style>
             .footer{
             display: flex;
-           position:relative;
+            position:relative;
             align-items:center;
+            justify-content:space-between;
             background-color: #134a88;
+            padding:0 20px;
            }
             .right-footer{
             display: flex;
-            margin-left:500px;
+           
            }
             .menu{
             color: white;
