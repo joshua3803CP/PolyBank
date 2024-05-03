@@ -112,32 +112,43 @@ class Header extends PolymerElement{
             width: 100px;
             
         }
-        .login__panel{
-            position: fixed;
-            box-shadow: 0 10px 20px 0 black;
-            display:none;
-            height:100%;
-            width: 500px;
-            transition: 0.3s;
-            background-color:#134a88;
-            z-index: 1;
-            top: 0;
-            right: 0;
-            overflow-x: hidden;
-            transition: 0.5s;
-         
-        }
+        .login__panel {
+         position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(19, 74, 136, 0.5); /* Adjust the alpha value (0.5 in this case) to change the opacity */
+          z-index: 1300;
+         display: none;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         padding: 20px;
+         box-sizing: border-box;
+}
         .login__panel.show{
             display: block; 
         }
+        .content-container{
+            background-color:#134a88;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 10px 20px 0 black;
+            
+            height:80%;
+            width: 500px;
+        }
         .login-content-container{
             top: 20px;
-            left: o;
+            left: 0;
             color: white;
            display: flex;
            flex-direction:column;
            align-items:center;
-           justify-content: center; /* Center content vertically */
+           justify-content:; /* Center content vertically */
            height: 100%; /* Take full height of the login panel */
          
          
@@ -159,6 +170,7 @@ class Header extends PolymerElement{
          --primary-text-color: white;
          --paper-input-container-color: white;
         }
+  
 
     
         </style>
@@ -221,18 +233,21 @@ class Header extends PolymerElement{
                                           </div> 
                                     
                                           <div>
-                                          <button class="loginbtn" on-click="toggleLoginPanel">Login</button>
+                                          <button class="loginbtn" id="loginbtn" >Login</button>
                                           </div>
                                     </div>
                             </div>
                      </div>
       </div>
-
+      
       <div class="login__panel" id="loginPanel"> 
-           <button class="closebtn" on-click="closeLoginPanel">X</button>
+         <div class="content-container">
+           <button class="closebtn" >X</button>
         <div class="login-content-container">
-                  <h3>Welcome Back !</h3>
-                  <h3>Login to you Account.</h3>
+                  <h3>   Welcome Back !</h3>
+                  <h3>   Login to you Account.</h3>
+                  <br>
+                  <br>
                   <!-- Your login form goes here -->
                   <form>
                      <label for="username">Username:</label><br>
@@ -244,9 +259,47 @@ class Header extends PolymerElement{
                   </form>
          </div>         
       </div>
-
+      </div>
+      
         `;
     }
+    connectedCallback() {
+      super.connectedCallback();
+      // Add event listener for the login button to toggle login panel and overlay
+      const loginBtn = this.shadowRoot.querySelector('.loginbtn');
+      if (loginBtn) {
+          loginBtn.addEventListener('click', () => {
+              this.toggleLoginPanel();
+              this.toggleOverlay();
+          });
+      } else {
+          console.error("Login button not found.");
+      }
+  
+      // Add event listener for the close button to close login panel and overlay
+      const closeBtn = this.shadowRoot.querySelector('.closebtn');
+      if (closeBtn) {
+          closeBtn.addEventListener('click', () => {
+              this.closeLoginPanel();
+              this.toggleOverlay();
+          });
+      } else {
+          console.error("Close button not found.");
+      }
+  
+      // Add event listener for the overlay to close login panel and overlay
+      const overlay = this.shadowRoot.querySelector('#overlay');
+      if (overlay) {
+          overlay.addEventListener('click', () => {
+              this.closeLoginPanel();
+              this.toggleOverlay();
+          });
+      } else {
+          console.error("Overlay not found.");
+      }
+  }
+  
+
     toggleLoginPanel() {
       const loginPanel = this.shadowRoot.querySelector('#loginPanel');
       loginPanel.classList.toggle('show');
@@ -256,6 +309,10 @@ class Header extends PolymerElement{
       const loginPanel = this.shadowRoot.querySelector('#loginPanel');
       loginPanel.classList.remove('show');
    }
+   toggleOverlay() {
+      const overlay = this.shadowRoot.querySelector('#overlay');
+      overlay.classList.toggle('show');
+  }
 
    handleRegister(){
       this.set('routeData.page', 'register-page');
@@ -263,35 +320,38 @@ class Header extends PolymerElement{
 //   handle_gotohome(){
 //       this.set('routeData.page', 'home-page');
 //   }
-   handleLogin() {
-      const username = this.shadowRoot.querySelector('#username').value;
-      const password = this.shadowRoot.querySelector('#password').value;
+handleLogin() {
+   const username = this.shadowRoot.querySelector('#username').value;
+   const password = this.shadowRoot.querySelector('#password').value;
 
-      // Encrypt the password using SHA-256
-      
+   fetch('http://localhost:3500/Users')
+       .then(response => {
+           if (response.ok) {
+               return response.json();
+           } else {
+               throw new Error('Network response was not ok.');
+           }
+       })
+       .then(data => {
+           // Check if data is returned
+           if (data.length > 0) {
+               // Iterate through the data to find a matching username and password
+               const user = data.find(user => user.Username === username && user.Password === password);
+               if (user) {
+                   // If user exists, navigate to home page
+                   this.set('routeData.page', 'user-home-page');
+               } else {
+                   console.error('Incorrect username or password.');
+               }
+           } else {
+               console.error('User not found.');
+           }
+       })
+       .catch(error => {
+           console.error('Error checking user:', error);
+       });
+}
 
-      // Send a request to check if the user exists with the provided username and encrypted password
-      fetch('http://localhost:3000/Users?Username=' + username + '&Password=' + password)
-         .then(response => {
-            if (response.ok) {
-                  return response.json();
-            } else {
-                  throw new Error('Network response was not ok.');
-            }
-         })
-         .then(data => {
-            // If the user exists, navigate to a new page (e.g., home page)
-            if (data.length > 0) {
-                  this.set('routeData.page', 'user-home-page');
-            } else {
-                  // If the user does not exist, you can display an error message or handle it accordingly
-                  console.error('User not found.');
-            }
-         })
-         .catch(error => {
-            console.error('Error checking user:', error);
-         });
-   }
 
    handle_gotohome() {
       this.set('routeData.page', 'home-page');

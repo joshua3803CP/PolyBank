@@ -67,6 +67,7 @@ class Checking extends PolymerElement{
         `;
 
     }
+    
     handle_createaccount(){
       this.set('routeData.page', 'newaccount-page');
   }

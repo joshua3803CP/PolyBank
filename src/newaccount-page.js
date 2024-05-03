@@ -20,26 +20,44 @@ class Newaccount extends PolymerElement{
                     justify-content:center;
                     align-items:center;
                     box-shadow: 0 5px 10px 0 black;
+                    background-color: #134a88;
                    
                 }
                 .heading{
+                    color: white;
                    padding:30px;
                     text-align:center;
                     margin: 30px;
-                    margin-bottom: 30px;
-                    
                 }
                 .form{
                     text-align:left;
-                    margin: 30px;
+                    color: white;
+                    margin-top:40px;
+                    
            
                     
                 }
                 .form-field {
+                    color:white;
                     width: 70%;
                     margin-bottom: 20px;
                 }
-              
+                paper-input{
+                    
+             --primary-text-color: white;
+             --paper-input-container-color: white;
+                }
+                paper-dropdown-menu {     
+             --primary-text-color: #f0f0f0; /* Change to your desired background color */    
+                }  
+                paper-listbox {
+            --primary-text-color: black; /* Change to your desired background color */
+                }
+                paper-checkbox {
+            --paper-checkbox-unchecked-color: whitesmoke; /* Change to your desired color */
+            --primary-text-color: #f0f0f0;
+                }
+
 
             </style>
             
@@ -48,7 +66,7 @@ class Newaccount extends PolymerElement{
             
              <div class="main-container">
                 <div class="heading">
-                    <h3>Open your Checking Account</h3>
+                    <h2>Open Your Checking Account</h2>
                     <div class="form">
                      <div class="section"> 
                       <h4>Personal Information <hr> </h4>

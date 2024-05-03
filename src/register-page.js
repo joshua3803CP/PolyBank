@@ -43,11 +43,17 @@ class RegisterPage extends PolymerElement{
                 color: white;
             }
             .registerbtn{
-                color: white;
-                background-color: #134a88;
-                justify-content:center;
-                margin-left: 100px;
-                margin-top: 10px;
+            background-color: #1f3e69;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 90px;
+            cursor: pointer;
+            width: 100px;
 
             }
             
