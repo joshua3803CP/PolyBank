@@ -1,5 +1,6 @@
 import { PolymerElement, html } from "@polymer/polymer/polymer-element.js"
 import '@polymer/iron-icons/iron-icons.js'
+import '@polymer/iron-label/iron-label.js'
 
 
 class userHeader extends PolymerElement{
@@ -272,7 +273,7 @@ class userHeader extends PolymerElement{
                                     <div class="dropdown">
                                     <button class="dropbtn">Personal</button>
                                        <div class="dropdown-content">
-                                       <a href="#">Checking</a>
+                                       <a on-click="handleCheckingClick">Checking</a>
                                        <a href="#">Savings and Investments</a>
                                        <a href="#">Digital Banking</a>
                                        <a href="#">Personal Debit Cards</a>
@@ -315,6 +316,7 @@ class userHeader extends PolymerElement{
                                     
                                           <div>
                                           <iron-icon icon="account-circle" class="accounticon" on-click="toggleuseraccount"></iron-icon>
+                                          <iron-label id="userLabel" hidden$="[[!loggedIn]]">[[username]]</iron-label>
                                           </div>
                                     </div>
                             </div>
@@ -324,7 +326,8 @@ class userHeader extends PolymerElement{
       <div class="user_panel" id="userPanel"> 
            <button class="closebtn" on-click="closeLoginPanel">close</button>
         <div class="login-content-container">
-                  <h3>Welcome Back User!</h3>
+                  <h3>Welcome Back!</h3>
+                  <iron-label id="userLabel" hidden$="[[!loggedIn]]">[[username]]</iron-label>
                   <!-- Your login form goes here -->
                   
          </div>         
@@ -332,6 +335,15 @@ class userHeader extends PolymerElement{
 
         `;
     }
+    connectedCallback() {
+      super.connectedCallback();
+      const currentUser = sessionStorage.getItem('currentUser');
+        if (currentUser) {
+            // Set the username and show the iron-label
+            this.username = currentUser;
+            this.loggedIn = true;
+        }
+      }
     toggleuseraccount() {
       const userPanel = this.shadowRoot.querySelector('#userPanel');
       userPanel.classList.toggle('show');
@@ -348,6 +360,11 @@ class userHeader extends PolymerElement{
   handle_gotohome(){
       this.set('routeData.page', 'home-page');
   }
+  handleCheckingClick() {
+   // Update route data to navigate to the "checking-page"
+   this.set('routeData.page', 'checking-page');
+}
+
 }
 
 

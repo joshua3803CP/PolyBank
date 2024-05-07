@@ -234,6 +234,9 @@ class Header extends PolymerElement{
                                     
                                           <div>
                                           <button class="loginbtn" id="loginbtn" >Login</button>
+                                          <paper-button raised on-click="handlelogout" hidden$="[[hideLogoutbutton]]">Next</paper-button>
+                                          <paper-button raised on-click="handlelogin" hidden$="[[hideLoginbutton]]">Next</paper-button>
+                                          <iron-label id="userLabel" hidden$="[[!loggedIn]]">[[username]]</iron-label>
                                           </div>
                                     </div>
                             </div>
@@ -265,12 +268,18 @@ class Header extends PolymerElement{
     }
     connectedCallback() {
       super.connectedCallback();
+      const currentUser = sessionStorage.getItem('currentUser');
+        if (currentUser) {
+            // Set the username and show the iron-label
+            this.username = currentUser;
+            this.loggedIn = true;
+        }
       // Add event listener for the login button to toggle login panel and overlay
       const loginBtn = this.shadowRoot.querySelector('.loginbtn');
       if (loginBtn) {
           loginBtn.addEventListener('click', () => {
               this.toggleLoginPanel();
-              this.toggleOverlay();
+             
           });
       } else {
           console.error("Login button not found.");
@@ -281,22 +290,13 @@ class Header extends PolymerElement{
       if (closeBtn) {
           closeBtn.addEventListener('click', () => {
               this.closeLoginPanel();
-              this.toggleOverlay();
+          
           });
       } else {
           console.error("Close button not found.");
-      }
+      } 
   
-      // Add event listener for the overlay to close login panel and overlay
-      const overlay = this.shadowRoot.querySelector('#overlay');
-      if (overlay) {
-          overlay.addEventListener('click', () => {
-              this.closeLoginPanel();
-              this.toggleOverlay();
-          });
-      } else {
-          console.error("Overlay not found.");
-      }
+      
   }
   
 
@@ -309,10 +309,7 @@ class Header extends PolymerElement{
       const loginPanel = this.shadowRoot.querySelector('#loginPanel');
       loginPanel.classList.remove('show');
    }
-   toggleOverlay() {
-      const overlay = this.shadowRoot.querySelector('#overlay');
-      overlay.classList.toggle('show');
-  }
+  
 
    handleRegister(){
       this.set('routeData.page', 'register-page');
@@ -338,6 +335,8 @@ handleLogin() {
                // Iterate through the data to find a matching username and password
                const user = data.find(user => user.Username === username && user.Password === password);
                if (user) {
+                sessionStorage.setItem('currentUser', JSON.stringify(user.Username));
+                console.log("Current User:",sessionStorage.getItem('currentUser'));
                    // If user exists, navigate to home page
                    this.set('routeData.page', 'user-home-page');
                } else {
@@ -350,7 +349,7 @@ handleLogin() {
        .catch(error => {
            console.error('Error checking user:', error);
        });
-}
+} 
 
 
    handle_gotohome() {

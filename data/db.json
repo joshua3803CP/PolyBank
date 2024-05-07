@@ -14,5 +14,23 @@
       "Phone": "9677218021",
       "id": 2
     }
+  ],
+  "Accounts": [
+    {
+      "fullName": "Joshua",
+      "dob": "1999-01-29",
+      "ssn": "3245324563456",
+      "accountHolder": "Joint Account",
+      "accountType": "Basic Checking",
+      "initialDeposit": "235235",
+      "debitCardOptions": "Type2",
+      "checkOrder": "on",
+      "onlineBankingSetup": "on",
+      "mobileBankingSetup": "on",
+      "directDepositSetup": "on",
+      "additionalServices": "on",
+      "termsConditionsAgreement": "on",
+      "id": 1
+    }
   ]
 }
