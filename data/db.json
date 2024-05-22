@@ -1,18 +1,96 @@
 {
   "Users": [
     {
-      "Username": "Joshua",
-      "Password": "Joshua!=11wIII",
-      "Email": "jsanthosh523@gmail.com",
-      "Phone": "9677328021",
-      "id": 1
+      "id": 1,
+      "Username": "J",
+      "Password": "J",
+      "email": "jane@example.com",
+      "Phone": "9677218021",
+      "accounts": [
+        {
+          "fullName": "Santhosh",
+          "dob": "1998-01-29",
+          "ssn": "46236326",
+          "accountHolder": "Joint Account",
+          "accountType": "Interest-Bearing Checking",
+          "initialDeposit": "60000908",
+          "debitCardOptions": "Type2",
+          "checkOrder": "on",
+          "onlineBankingSetup": "on",
+          "mobileBankingSetup": "on",
+          "directDepositSetup": "on",
+          "additionalServices": "on",
+          "termsConditionsAgreement": "on",
+          "accountNumber": "ACC8166"
+        },
+        {
+          "fullName": "Santhosh",
+          "dob": "1998-01-29",
+          "ssn": "46236326",
+          "accountHolder": "Joint Account",
+          "accountType": "Interest-Bearing Checking",
+          "initialDeposit": "60000908",
+          "debitCardOptions": "Type2",
+          "checkOrder": "on",
+          "onlineBankingSetup": "on",
+          "mobileBankingSetup": "on",
+          "directDepositSetup": "on",
+          "additionalServices": "on",
+          "termsConditionsAgreement": "on",
+          "accountNumber": "ACC9569"
+        }
+      ]
     },
     {
+      "id": 2,
       "Username": "Joshua",
-      "Password": "Santhosh",
-      "Email": "jsanthosh523@gmail.com",
+      "Password": "Joshua",
+      "email": "jane@example.com",
       "Phone": "9677218021",
-      "id": 2
+      "accounts": [
+        {},
+        {
+          "fullName": "Joshua",
+          "dob": "1998-01-29",
+          "ssn": "100979765",
+          "accountHolder": "Joint Account",
+          "accountType": "Interest-Bearing Checking",
+          "initialDeposit": "2",
+          "debitCardOptions": "Type3",
+          "checkOrder": "on",
+          "onlineBankingSetup": "on",
+          "mobileBankingSetup": "on",
+          "directDepositSetup": "on",
+          "additionalServices": "on",
+          "termsConditionsAgreement": "on",
+          "accountNumber": "ACC1404"
+        }
+      ]
+    },
+    {
+      "Username": "v",
+      "Password": "v",
+      "Email": "venkat@gmail.com",
+      "Phone": "7998954633",
+      "id": 3,
+      "accounts": [
+        {
+          "fullName": "Venkatesh",
+          "dob": "2020-02-04",
+          "ssn": "352q35235",
+          "accountHolder": "Individual",
+          "accountType": "Student Checking",
+          "initialDeposit": "",
+          "debitCardOptions": "Type2",
+          "checkOrder": "on",
+          "onlineBankingSetup": "on",
+          "mobileBankingSetup": "on",
+          "directDepositSetup": "on",
+          "additionalServices": "on",
+          "termsConditionsAgreement": "on",
+          "accountNumber": "ACC3096"
+        }
+      ]
     }
   ],
   "Accounts": [
@@ -31,6 +109,56 @@
       "additionalServices": "on",
       "termsConditionsAgreement": "on",
       "id": 1
+    },
+    {
+      "fullName": "Joshua  s",
+      "dob": "1888-01-29",
+      "ssn": "23521521516",
+      "accountHolder": "Joint Account",
+      "accountType": "Student Checking",
+      "initialDeposit": "3475373475347",
+      "debitCardOptions": "Type3",
+      "checkOrder": "on",
+      "onlineBankingSetup": "on",
+      "mobileBankingSetup": "on",
+      "directDepositSetup": "on",
+      "additionalServices": "on",
+      "termsConditionsAgreement": "on",
+      "id": 2
+    },
+    {
+      "fullName": "Joshua",
+      "dob": "9999-12-23",
+      "ssn": "4737345457454",
+      "accountHolder": "Joint Account",
+      "accountType": "Student Checking",
+      "initialDeposit": "3463463247257",
+      "debitCardOptions": "Type2",
+      "checkOrder": "on",
+      "onlineBankingSetup": "on",
+      "mobileBankingSetup": "on",
+      "directDepositSetup": "on",
+      "additionalServices": "on",
+      "termsConditionsAgreement": "on",
+      "accountNumber": "ACC7978",
+      "id": 3
+    },
+    {
+      "fullName": "",
+      "dob": "",
+      "ssn": "",
+      "accountHolder": "Individual",
+      "accountType": "Basic Checking",
+      "initialDeposit": "",
+      "debitCardOptions": "Type1",
+      "checkOrder": "on",
+      "onlineBankingSetup": "on",
+      "mobileBankingSetup": "on",
+      "directDepositSetup": "on",
+      "additionalServices": "on",
+      "termsConditionsAgreement": "on",
+      "accountNumber": "ACC6996",
+      "id": 4
     }
   ]
 }

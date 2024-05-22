@@ -1,7 +1,33 @@
 import { PolymerElement, html } from "@polymer/polymer/polymer-element.js"
 import '@polymer/paper-input/paper-input.js'
+import '@polymer/iron-label/iron-label.js'
 
 class Header extends PolymerElement{
+
+    static get properties() {
+        return {
+            hideLoginbutton: {
+                type: Boolean,
+                value: false 
+            },
+            hideUsername: {
+                type: Boolean,
+                value: true 
+            },
+            hideLogoutbutton: {
+                type: Boolean,
+                value: true
+            },
+            registrationSuccess: {
+                type: Boolean,
+                value: false
+            }
+            
+            
+            
+        };
+    }
+
 
     static get template(){
         return html`
@@ -22,16 +48,16 @@ class Header extends PolymerElement{
          }
          .logo{
             height: 55px;
-            margin-left: 100px;
+            margin-left: 70px;
             cursor: pointer;
          }
 
          .header-left{
-            width: 35%;
+            width: 30%;
          }
          .header-right{
             display: flex;
-            width: 65%;
+            width: 70%;
             justify-content:left;
          }
          
@@ -96,22 +122,7 @@ class Header extends PolymerElement{
             display: flex;
             margin-right: 10px;
         }
-        .loginbtn{
-            background-color: #1f3e69;
-            color: white;
-            font-size: 16px;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin: 4px 2px;
-            margin-right: 10px;
-            cursor: pointer;
-           
-            width: 100px;
-            
-        }
+      
         .login__panel {
          position: fixed;
           top: 0;
@@ -153,6 +164,49 @@ class Header extends PolymerElement{
          
          
         }
+        .card{
+            display: flex;
+                width:400px;
+                background-color: #134a88;
+                justify-content:center;
+        }
+        .card-content{
+                color: white;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+              
+            }
+        
+        paper-input     {
+                color: white;
+            }
+            .registerbtn{
+            background-color: #1f3e69;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 100px;
+            cursor: pointer;
+            width: 100px;
+
+            }
+        .login{
+            display: none;
+        }
+        .login.show{
+            display: block; 
+        }
+        .register{
+            display: none;
+        }
+        .register.show{
+            display: block; 
+        }
         .closebtn{
             position: absolute;
             top: 20px;
@@ -170,7 +224,12 @@ class Header extends PolymerElement{
          --primary-text-color: white;
          --paper-input-container-color: white;
         }
-  
+        paper-button     {
+                color: white;
+            }
+            iron-label{
+                color: white;
+            }
 
     
         </style>
@@ -184,7 +243,7 @@ class Header extends PolymerElement{
         
 <div class="header">
          <div class= "header-left">
-               <img src="images/polyimg/first-national-bank-paris-logo-white.png" alt="Polybank logo" class= "logo" on-click="handle_gotohome">
+               <img src="images/polyimg/first-national-bank-paris-logo-white.png" alt="Polybank logo" class= "logo" >
          </div>
                      <div class="header-right">
                               <div class= "dropdown-container">
@@ -224,6 +283,10 @@ class Header extends PolymerElement{
                                           <a href="#">Personal Debit Cards</a>
                                           </div>
                                     </div>    
+                                    <div class="dropdown">
+                                       <button class="dropbtn" on-click="handleDashboardClick">Dashboard</button>
+                                          
+                                    </div>    
                                  </div>
                            
                                     <div class="btncontainer">
@@ -233,10 +296,9 @@ class Header extends PolymerElement{
                                           </div> 
                                     
                                           <div>
-                                          <button class="loginbtn" id="loginbtn" >Login</button>
-                                          <paper-button raised on-click="handlelogout" hidden$="[[hideLogoutbutton]]">Next</paper-button>
-                                          <paper-button raised on-click="handlelogin" hidden$="[[hideLoginbutton]]">Next</paper-button>
-                                          <iron-label id="userLabel" hidden$="[[!loggedIn]]">[[username]]</iron-label>
+                                          <paper-button raised on-click="toggleLoginPanel" hidden$="[[hideLoginbutton]]">Login</paper-button>
+                                          <iron-label name="hideUsername" id="hideUsername" hidden$="[[hideUsername]]">[[username]]</iron-label>
+                                          <paper-button raised on-click="handlelogout" hidden$="[[hideLogoutbutton]]">Logout</paper-button>
                                           </div>
                                     </div>
                             </div>
@@ -246,12 +308,13 @@ class Header extends PolymerElement{
       <div class="login__panel" id="loginPanel"> 
          <div class="content-container">
            <button class="closebtn" >X</button>
-        <div class="login-content-container">
-                  <h3>   Welcome Back !</h3>
+         <div class="login-content-container">
+            <div class= "login" id="login">
+                 <h3>   Welcome Back !</h3>
                   <h3>   Login to you Account.</h3>
                   <br>
                   <br>
-                  <!-- Your login form goes here -->
+                 
                   <form>
                      <label for="username">Username:</label><br>
                      <paper-input class="paperinp" id="username" name="username"></paper-input>
@@ -260,30 +323,71 @@ class Header extends PolymerElement{
                      <paper-button raised type="submit" on-click="handleLogin">login</paper-button>
                      <paper-button raised type="submit" on-click="handleRegister">Register</paper-button>
                   </form>
-         </div>         
-      </div>
+                  </div>
+                  <div class= "register" id="register">
+                   <paper-card class= "card" >
+                     <div class = "card-content">  
+                <h2>Register With First National</h2>
+                <form id="registerForm" on-submit="register">
+                            <iron-icon icon="account-circle" prefix></iron-icon>
+                            <paper-input id="username" label="User Name"></paper-input>  
+                            <iron-icon icon="lock" prefix></iron-icon>
+                            <paper-input id="password" label="Password"></paper-input> 
+                            <iron-icon icon="mail" prefix></iron-icon>
+                            <paper-input id="email" label="E-mail"></paper-input>  
+                            <iron-icon icon="perm-phone-msg" prefix></iron-icon>
+                            <paper-input id="phone" label="Phone Number"></paper-input>
+                            <button class="registerbtn" type="submit">Register</button>
+                        </form>
+                        <div class="success-message" hidden$="[[!registrationSuccess]]">
+                            User registered successfully. <a href="/">Go back to home page</a>
+                       </div>
+        </div>
+          </paper-card>
+        </div>
+                  </div>    
+          
+     
+        </div>
       </div>
       
         `;
     }
+
+
+    ready() {
+        super.ready();
+        // Add any additional initialization code here
+    }
+
     connectedCallback() {
       super.connectedCallback();
+
       const currentUser = sessionStorage.getItem('currentUser');
         if (currentUser) {
             // Set the username and show the iron-label
             this.username = currentUser;
-            this.loggedIn = true;
+            
         }
-      // Add event listener for the login button to toggle login panel and overlay
-      const loginBtn = this.shadowRoot.querySelector('.loginbtn');
-      if (loginBtn) {
-          loginBtn.addEventListener('click', () => {
-              this.toggleLoginPanel();
+      
+        const isLoggedin = sessionStorage.getItem('isLoggedin'); 
+         if (isLoggedin==1) {
+            this.hideLoginbutton = true;
+            this.hideLogoutbutton = false;
+            this.hideUsername = false;
+         }
+         
+
+    //   // Add event listener for the login button to toggle login panel and overlay
+    //   const loginBtn = this.shadowRoot.querySelector('.loginbtn');
+    //   if (loginBtn) {
+    //       loginBtn.addEventListener('click', () => {
+    //           this.toggleLoginPanel();
              
-          });
-      } else {
-          console.error("Login button not found.");
-      }
+    //       });
+    //   } else {
+    //       console.error("Login button not found.");
+    //   }
   
       // Add event listener for the close button to close login panel and overlay
       const closeBtn = this.shadowRoot.querySelector('.closebtn');
@@ -292,9 +396,11 @@ class Header extends PolymerElement{
               this.closeLoginPanel();
           
           });
-      } else {
+     } else {
           console.error("Close button not found.");
-      } 
+      }  
+
+    
   
       
   }
@@ -303,25 +409,34 @@ class Header extends PolymerElement{
     toggleLoginPanel() {
       const loginPanel = this.shadowRoot.querySelector('#loginPanel');
       loginPanel.classList.toggle('show');
+      const login = this. shadowRoot.querySelector('#login')
+      login.classList.toggle('show');
    }
    
    closeLoginPanel() {
       const loginPanel = this.shadowRoot.querySelector('#loginPanel');
       loginPanel.classList.remove('show');
+      const register = this. shadowRoot.querySelector('#register')
+      register.classList.remove('show');
+      const login = this. shadowRoot.querySelector('#login')
+      login.classList.remove('show');
    }
   
 
    handleRegister(){
-      this.set('routeData.page', 'register-page');
+    
+      const login = this. shadowRoot.querySelector('#login')
+      const register = this. shadowRoot.querySelector('#register')
+      login.classList.remove('show');
+      register.classList.toggle('show');
+      
   }
-//   handle_gotohome(){
-//       this.set('routeData.page', 'home-page');
-//   }
-handleLogin() {
-   const username = this.shadowRoot.querySelector('#username').value;
-   const password = this.shadowRoot.querySelector('#password').value;
 
-   fetch('http://localhost:3500/Users')
+   handleLogin() {
+     const username = this.shadowRoot.querySelector('#username').value;
+     const password = this.shadowRoot.querySelector('#password').value;
+
+     fetch('http://localhost:3500/Users')
        .then(response => {
            if (response.ok) {
                return response.json();
@@ -332,13 +447,26 @@ handleLogin() {
        .then(data => {
            // Check if data is returned
            if (data.length > 0) {
+            console.log("Data ", data);
                // Iterate through the data to find a matching username and password
                const user = data.find(user => user.Username === username && user.Password === password);
                if (user) {
-                sessionStorage.setItem('currentUser', JSON.stringify(user.Username));
+                const userName =user.Username;
+                const userId = user.id;
+             
+                console.log("UserId", userId );
+                console.log("UserDetail", user );
+                sessionStorage.setItem('currentUser', user.Username);
+                sessionStorage.setItem('isLoggedin', 1);
                 console.log("Current User:",sessionStorage.getItem('currentUser'));
+
+                this.dispatchEvent(new CustomEvent('dispatcheduserid', { detail:{ userId : userId ,userDetail: user}, bubbles: true, composed: true }));
+                
+                this.closeLoginPanel();
+               
                    // If user exists, navigate to home page
                    this.set('routeData.page', 'user-home-page');
+                   
                } else {
                    console.error('Incorrect username or password.');
                }
@@ -349,7 +477,16 @@ handleLogin() {
        .catch(error => {
            console.error('Error checking user:', error);
        });
-} 
+   } 
+   handlelogout() {
+        this.set('routeData.page', '');
+        sessionStorage.setItem('isLoggedin', 0 );
+        sessionStorage.removeItem('currentUser');
+        this.hideLogoutbutton = true;
+        this.hideLoginbutton = false;
+        this.hideUsername = true;
+        
+   }
 
 
    handle_gotohome() {
@@ -360,6 +497,44 @@ handleLogin() {
       // Update route data to navigate to the "checking-page"
       this.set('routeData.page', 'checking-page');
   }
+  handleDashboardClick() {
+      // Update route data to navigate to the "checking-page"
+      this.set('routeData.page', 'dashboard-page');
+  }
+  register(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const username = this.$.username.value;
+    const password = this.$.password.value;
+    const email = this.$.email.value;
+    const phone = this.$.phone.value;
+
+    const newUser = {
+        Username: username,
+        Password: password,
+        Email: email,
+        Phone: phone
+    };
+
+    fetch('http://localhost:3500/Users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUser)
+    }).then(response => {
+        if (response.ok) {
+            console.log('User registered successfully.');
+            this.registrationSuccess = true;
+
+        } else {
+            console.error('Failed to register user.');
+            // Handle error response
+        }
+    }).catch(error => {
+        console.error('Error registering user:', error);
+    });
+}
 }
 
 

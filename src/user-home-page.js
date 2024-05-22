@@ -9,6 +9,15 @@ import './my-subscription.js';
 import './my-footer.js';
 
 class UserHome extends PolymerElement{
+    static get properties() {
+        return {
+            hideLoginbutton: {
+                type: Boolean,
+                value: false 
+            },
+
+    }
+}
 
     static get template(){
         return html`
@@ -17,7 +26,7 @@ class UserHome extends PolymerElement{
         
             </style>
        
-            <my-userheader></my-userheader>
+            <my-header ></my-header>
             <my-carousel></my-carousel>  
             <my-card></my-card>
             <my-cardlinks></my-cardlinks>
@@ -28,7 +37,11 @@ class UserHome extends PolymerElement{
         `;
 
     }
+   
 
+
+  
+   
 }  
 customElements.define('user-home-page',UserHome);
 

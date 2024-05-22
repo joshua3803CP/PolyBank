@@ -113,7 +113,8 @@ class RegisterPage extends PolymerElement{
             Username: username,
             Password: password,
             Email: email,
-            Phone: phone
+            Phone: phone,
+            accounts: []
         };
 
         fetch('http://localhost:3000/Users', {

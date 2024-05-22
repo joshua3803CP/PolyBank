@@ -17,7 +17,7 @@ class Home extends PolymerElement{
         
             </style>
        
-            <my-header></my-header>
+            <my-header  ></my-header>
             <my-carousel></my-carousel>  
             <my-card></my-card>
             <my-cardlinks></my-cardlinks>
@@ -28,6 +28,7 @@ class Home extends PolymerElement{
         `;
 
     }
+   
 
 }  
 customElements.define("home-page",Home);
